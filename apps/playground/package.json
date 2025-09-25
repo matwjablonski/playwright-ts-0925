@@ -1,0 +1,34 @@
+{
+  "name": "todo-app-training",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Advanced Todo App for JavaScript to TypeScript migration training with Playwright E2E testing",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "echo 'Add ESLint here'",
+    "type-check": "echo 'Add TypeScript checking here'",
+    "test": "echo 'Add Playwright tests here'",
+    "test:headed": "echo 'Add headed Playwright tests here'",
+    "test:debug": "echo 'Add Playwright debug mode here'"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
+  },
+  "dependencies": {
+    "bulma": "^1.0.4"
+  },
+  "keywords": [
+    "todo",
+    "javascript", 
+    "typescript",
+    "training",
+    "playwright",
+    "e2e-testing",
+    "vite"
+  ],
+  "author": "Training Team",
+  "license": "MIT"
+}

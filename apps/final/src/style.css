@@ -1,0 +1,138 @@
+/* Login Form Fixes */
+.hero .box input {
+  pointer-events: auto !important;
+  cursor: text !important;
+  user-select: text !important;
+  -webkit-user-select: text !important;
+}
+
+.hero .box input:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.125em rgba(50, 115, 220, 0.25);
+}
+
+/* Todo Cards */
+.card[data-done="true"] {
+  opacity: 0.7;
+  border-left: 4px solid #48c774 !important;
+}
+
+.card[data-done="false"] {
+  border-left: 4px solid transparent;
+}
+
+/* Fix title colors */
+.card .title {
+  color: #363636 !important; /* Bulma's default dark text color */
+}
+
+.card .title.has-text-grey-light {
+  color: #b5b5b5 !important; /* Explicit grey for completed tasks */
+}
+
+.card .description {
+  color: #4a4a4a !important; /* Bulma's default text color */
+}
+
+.card .description.has-text-grey-light {
+  color: #b5b5b5 !important; /* Explicit grey for completed tasks */
+}
+
+/* Priority indicators */
+.has-background-danger-light {
+  border-left-color: #ff3860 !important;
+}
+
+.has-background-warning-light {
+  border-left-color: #ffdd57 !important;
+}
+
+.has-background-success-light {
+  border-left-color: #48c774 !important;
+}
+
+/* Overdue tasks */
+.card .has-text-danger {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+/* Form validation */
+.input.is-danger,
+.textarea.is-danger {
+  border-color: #ff3860 !important;
+}
+
+.help.is-danger {
+  color: #ff3860 !important;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* Buttons */
+button:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+}
+
+.card-footer-item {
+  border: none !important;
+  background: transparent !important;
+  font-size: 0.875rem;
+}
+
+.card-footer-item:hover:not(:disabled) {
+  background-color: #f5f5f5 !important;
+}
+
+/* Stats */
+.level-item .title {
+  margin-bottom: 0 !important;
+}
+
+.level-item .heading {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .fixed-grid.has-2-cols .grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .level.is-mobile {
+    flex-wrap: wrap;
+  }
+  
+  .level-item {
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Animations */
+.card {
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Search bar */
+.input:focus {
+  border-color: #3273dc !important;
+  box-shadow: 0 0 0 0.125em rgba(50, 115, 220, 0.25) !important;
+}
+
+/* Tags in header */
+.card-header-title .tag {
+  margin-right: 0.5rem;
+}
