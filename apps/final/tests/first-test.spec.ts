@@ -9,6 +9,9 @@ test('check if page contains todo cards', async ({
     await page.goto('http://localhost:5174/');
 
     const loginPage = new LoginPage(page);
+
+    await expect(page).toHaveScreenshot('login-page.png')
+
     await loginPage.login('admin123');
 
     // await page.keyboard.press('Enter');
