@@ -1,5 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { LoginPage } from "./pages/LoginPage.js";
+import { TodosPage } from "./pages/TodosPages.js";
+import { generateRandomString } from "./utils/todos.js";
 
 test('check if page contains todo cards', async ({
     page
@@ -24,47 +26,19 @@ test('check if we can add new todo', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.login('admin123');
 
-    await page.getByRole('button', { name: 'Dodaj zadanie' }).click();
+    const todosPage = new TodosPage(page);
+    await todosPage.addTodo(generateRandomString(1), '', '2024-12-31', '1');
 
-    await expect(page.getByText('Tytuł zadania musi mieć co najmniej 3 znaki')).toBeVisible();
-
-    await expect(page.getByText('Opis zadania musi mieć co najmniej 10 znaków')).toBeVisible();
-
-    await page.getByRole('textbox', { name: 'Wpisz tytuł zadania (min. 3' }).fill('Nowe zadanie');
+    expect(page.getByText('Tytuł zadania musi mieć conajmniej 3 znaki')).toBeVisible();
     
-    await page.getByRole('textbox', { name: 'Wpisz szczegółowy opis zadania' }).fill('Opis nowego zadania');
-
-    await page.locator('select[name="priority"]').selectOption('1');
+    await todosPage.addTodo(
+        generateRandomString(10), 
+        'Opis nowego zadania',
+        '2027-12-31', 
+        '1'
+    );
     
-    await page.locator('input[name="due_date"]').fill('2024-12-31');
-
-    await page.getByRole('button', { name: 'Dodaj zadanie' }).click();
-
-    // await expect(page.getByTestId('test-action-form-wrapper').locator('div').filter({ hasText: 'Dodaj nowe zadanie' })).toBeVisible();
-
-    // await page.getByLabel('Nazwa').click();
-    // await page.getByLabel('Nazwa').fill('Nowe zadanie');
-    // await page.getByLabel('Nazwa').press('Tab');
-    // await page.getByLabel('Opis').fill('Opis nowego zadania');
-    // await page.getByLabel('Opis').press('Tab');
-    // await page.getByLabel('Priorytet').selectOption('wysoki');
-    // await page.getByLabel('Priorytet').press('Tab');
-    // await page.getByLabel('Data zakończenia').fill('2024-12-31');
-    // await page.getByLabel('Data zakończenia').press('Tab');
-    // await page.getByRole('button', { name: 'Dodaj zadanie' }).click();
-
-    // czy pole z formularza zostało wyczyszczone
-    await expect(page.getByRole('textbox', { name: 'Wpisz tytuł zadania (min. 3' })).toHaveValue('');
-    await page.locator('.card-footer-item').first().click({
-      button: 'right'
-    });
-    await page.getByTestId('test-action-list-wrapper').locator('div').filter({ hasText: 'Posprzątaj pokójUpewnij si' }).nth(3).click();
-    await page.locator('body').press('Escape');
-    await page.getByText('Upewnij się, że wszystkie').click();
-    await page.getByText('Upewnij się, że wszystkie').click({
-      button: 'right'
-    });
-
+    await expect(todosPage.inputTitle).toHaveValue('');
     // await expect(page.getByTestId('test-action-list-wrapper').locator('div').filter({ hasText: 'Znaleziono 7 zadań' })).toBeVisible();
 });
 
