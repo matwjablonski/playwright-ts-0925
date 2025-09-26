@@ -61,6 +61,7 @@ export class LoginForm extends Component {
   }
 
   handleSubmit() {
+    console.log('Submitting login form...');
     if (this.isLoading) return;
     
     if (!this.validateForm()) {
