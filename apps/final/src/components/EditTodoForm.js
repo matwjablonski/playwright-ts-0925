@@ -38,7 +38,14 @@ export class EditTodoForm extends Component {
     // Clear error for this field when user starts typing
     if (this.errors && this.errors[name]) {
       this.errors[name] = null;
-      this.rerender();
+      // Don't call rerender here - it causes focus loss
+      // Instead, manually find and remove the error message and styling
+      const errorElement = document.querySelector(`[data-error-for="${name}"]`);
+      if (errorElement) {
+        errorElement.remove();
+      }
+      // Remove is-danger class from the input field
+      event.target.classList.remove('is-danger');
     }
   }
 
@@ -144,7 +151,10 @@ export class EditTodoForm extends Component {
             ...(this.errors.task ? [
               this.createElement(
                 'p',
-                { class: 'help is-danger' },
+                { 
+                  class: 'help is-danger',
+                  'data-error-for': 'task'
+                },
                 [this.errors.task]
               )
             ] : [])
@@ -180,7 +190,10 @@ export class EditTodoForm extends Component {
             ...(this.errors.description ? [
               this.createElement(
                 'p',
-                { class: 'help is-danger' },
+                { 
+                  class: 'help is-danger',
+                  'data-error-for': 'description'
+                },
                 [this.errors.description]
               )
             ] : [])
@@ -271,7 +284,10 @@ export class EditTodoForm extends Component {
                     ...(this.errors.due_date ? [
                       this.createElement(
                         'p',
-                        { class: 'help is-danger' },
+                        { 
+                          class: 'help is-danger',
+                          'data-error-for': 'due_date'
+                        },
                         [this.errors.due_date]
                       )
                     ] : [])

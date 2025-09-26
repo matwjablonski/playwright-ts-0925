@@ -10,11 +10,15 @@
     "preview": "vite preview",
     "lint": "echo 'Add ESLint here'",
     "type-check": "echo 'Add TypeScript checking here'",
-    "test": "echo 'Add Playwright tests here'",
-    "test:headed": "echo 'Add headed Playwright tests here'",
+    "test": "npx playwright test",
+    "test:ui": "npx playwright test --ui",
     "test:debug": "echo 'Add Playwright debug mode here'"
   },
   "devDependencies": {
+    "@playwright/test": "^1.55.1",
+    "@types/node": "^24.5.2",
+    "playwright": "^1.55.1",
+    "typescript": "^5.9.2",
     "vite": "^6.3.5"
   },
   "dependencies": {
@@ -22,7 +26,7 @@
   },
   "keywords": [
     "todo",
-    "javascript", 
+    "javascript",
     "typescript",
     "training",
     "playwright",
